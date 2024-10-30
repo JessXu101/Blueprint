@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="blueprintstyle.css">
+       <style>
+            
+                        
+            table {
+                width: 90%;
+                margin: 0 auto;
+                border-collapse: collapse;
+                background-color: #ffffff;
+            }
+            table, th, td {
+                border: 1px solid #dfe3ee;
+            }
+            th, td {
+                padding: 12px;
+                text-align: left;
+            }
+            th {
+                background-color: #3b5998;
+                color: #ffffff;
+                font-size: 1.2rem;
+                font-family: special elite;
+            }
+            tbody tr:nth-child(odd) {
+                background-color: #f7f7f7;
+            }
+            tbody tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+            input[type="text"], input[type="date"] {
+                width: 100%;
+                height: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+                border: none;
+                border-radius: 4px;
+                background-color:transparent;
+                color: #3b5998;
+                font-size: 18px;
+            }
+            input[type="text"]{
+                font-family: open sans;
+            }
+            input[type="date"] {
+                font-family: special elite;
+            }
+    
+            td:first-child {
+              width: 20%;
+            }
+    
+            td:nth-child(3) {
+             width: 25%;
+            }
+            
+            .completeCheckbox {
+                text-align: center;
+                width: 50px;
+            }
+            input[type="checkbox"] {
+                transform: scale(1.2);
+            }
+            .completeCheckbox {
+                cursor: pointer;
+            }
+            .completed-row input[type="text"], .completed-row input[type="date"] {
+                text-decoration: line-through;
+                color: grey;
+            }
+    
+            #addRowButton {
+        background-color: #3b5998; 
+        color: #ffffff; 
+        border: none;
+        margin-left: 63px;
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    #addRowButton:hover {
+        background-color: #8b9dc3; 
+    }
+    
+    #addRowButton:active {
+        background-color: #dfe3ee; 
+        transform: scale(0.98); 
+    }
+    
+    #addRowButton:focus {
+        outline: none; 
+        box-shadow: 0 0 0 3px #f7f7f7; 
+    }
+
+    .tooltip-icon {
+            cursor: pointer;
+            margin-left: 8px;
+            font-size: 1rem;
+            color: #FFD700; /* Gold color for the lightbulb */
+        }
+            
+        </style>
+        </head>
+        
+        <body>
+           <div>
+            <header>
+                Blueprint 
+            </header>
+            </div>
+            
+                <div class="navbar">
+                    <a href="index.html">Home</a>
+                    <a href="Calendar.html" class="active">Tracker</a>
+                    <a href="Planner.html">Planner</a>
+                    <a href="ToDo.html">To Do</a>
+                    <a href="StudyTips.html">Study Tips</a>
+                    <a href="Signin.html">Login</a>
+                </div>
+    <br>
+            <h2>Test/Assignment Tracker</h2>
+        
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Details</th>
+                        <th>Date Due</th>
+                        <th>Complete</th>
+                        <span class="tooltip-icon" onclick="showTooltip()">💡</span>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" ></td>
+                        <td><input type="text"></td>
+                        <td><input type="date"></td>
+                        <td><input type="checkbox" class="completeCheckbox"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="date"></td>
+                        <td><input type="checkbox" class="completeCheckbox"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="date"></td>
+                        <td><input type="checkbox" class="completeCheckbox"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="addRowButton">Add Row</button>
+            <br><br><br><br>
+            <footer>
+                &copy; 2024 Blueprint. All rights reserved.
+            </footer>
+
+<script>
+              
+              function addCheckboxListeners(checkbox, row) {
+    // Single click event for marking as complete
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            row.classList.add('completed-row'); // Add line-through and grey color
+        } else {
+            row.classList.remove('completed-row'); // Remove line-through and grey color
+        }
+    });
+
+    // Double click event for deleting or clearing rows
+    checkbox.addEventListener('dblclick', function() {
+        const tableBody = row.closest('tbody');
+        const rows = Array.from(tableBody.querySelectorAll('tr'));
+        const index = rows.indexOf(row);
+
+        if (index < 3) {
+            // If it's one of the first three rows, clear the inputs and uncheck the checkbox
+            row.querySelectorAll('input[type="text"], input[type="date"]').forEach(input => {
+                input.value = ''; // Clear input fields
+            });
+            checkbox.checked = false; // Uncheck the checkbox
+            row.classList.remove('completed-row'); // Remove the line-through if applied
+        } else {
+            // For other rows, remove the row
+            tableBody.removeChild(row);
+        }
+    });
+}
+document.querySelectorAll('tbody tr').forEach((row) => {
+    const checkbox = row.querySelector('.completeCheckbox');
+    addCheckboxListeners(checkbox, row);
+});
+
+    
+              
+              // Re-attach input listeners after adding new row
+              document.getElementById('addRowButton').addEventListener('click', function() {
+                  const tableBody = document.querySelector('tbody');
+                  const newRow = document.createElement('tr');
+                  newRow.innerHTML = `
+                      <td><input type="text"></td>
+                      <td><input type="text"></td>
+                      <td><input type="date"></td>
+                      <td><input type="checkbox" class="completeCheckbox"></td>
+                  `;
+                  tableBody.appendChild(newRow);
+              
+                  const checkbox = newRow.querySelector('.completeCheckbox');
+                  addCheckboxListeners(checkbox, newRow);
+              
+                  attachInputListeners(); // Re-attach input listeners to new inputs
+              });
+            </script>
+              <script type="module">
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+                import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+                import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+                
+                // Firebase configuration
+                const firebaseConfig = {
+                    apiKey: "AIzaSyBLZs2ZrAiddMYetsWRYM4Z92zVo0hOiP8",
+                    authDomain: "ace-43229.firebaseapp.com",
+                    databaseURL: "https://ace-43229-default-rtdb.asia-southeast1.firebasedatabase.app",
+                    projectId: "ace-43229",
+                    storageBucket: "ace-43229.appspot.com",
+                    messagingSenderId: "607266423584",
+                    appId: "1:607266423584:web:44eb1ae299097624b64d45",
+                    measurementId: "G-B0PC6B0HZ0"
+                };
+                
+                // Initialize Firebase app, auth, and database
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const database = getDatabase(app);
+                
+                let currentUserId = null;
+                
+                // Handle Firebase Authentication
+                onAuthStateChanged(auth, user => {
+                    if (user) {
+                        currentUserId = user.uid;
+                        loadCalendarData();
+                    } else {
+                        currentUserId = null;
+                        clearCalendarData();
+                        alert("Please sign in to save your work.");
+                    }
+                });
+                
+                // Debounce function to delay saving data
+                function debounce(func, delay) {
+                    let timeout;
+                    return function() {
+                        const context = this, args = arguments;
+                        clearTimeout(timeout);
+                        timeout = setTimeout(() => func.apply(context, args), delay);
+                    };
+                }
+                
+                function saveCalendarData() {
+    if (!currentUserId) {
+        console.log("User not signed in.");
+        return;
+    }
+
+    const CalendarData = [];
+    const rows = document.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+        const subjectInput = row.querySelectorAll('input[type="text"]')[0]; // First text input for subject
+        const detailsInput = row.querySelectorAll('input[type="text"]')[1]; // Second text input for details
+        const dateInput = row.querySelector('input[type="date"]'); // Date input
+        const checkbox = row.querySelector('input[type="checkbox"]'); // Checkbox for completion
+
+        const subject = subjectInput ? subjectInput.value : ''; 
+        const details = detailsInput ? detailsInput.value : ''; 
+        const dateDue = dateInput ? dateInput.value : ''; 
+        const completed = checkbox ? checkbox.checked : false;
+
+        CalendarData.push({ subject, details, dateDue, completed });
+    });
+
+    // Save data to Firebase
+    set(ref(database, 'Users/' + currentUserId + '/Calendar'), CalendarData)
+        .then(() => {
+            console.log("Data saved automatically.");
+        })
+        .catch(error => {
+            console.error("Error saving data:", error);
+        });
+}
+
+                
+                // Debounced saveCalendarData function (1-second delay)
+                const debouncedSaveCalendarData = debounce(saveCalendarData, 1000);
+                
+                // Function to add event listeners for automatic saving
+                function attachInputListeners() {
+                    const inputs = document.querySelectorAll('input[type="text"], input[type="date"]');
+                
+                    inputs.forEach(input => {
+                        input.addEventListener('input', debouncedSaveCalendarData); // Call the debounced function
+                    });
+                }
+                
+                // Call this function when adding new rows or loading existing data
+                attachInputListeners();
+
+                window.addEventListener('beforeunload', function() {
+    saveCalendarData();
+});
+
+                
+function loadCalendarData() {
+    const userCalendarRef = ref(database, 'Users/' + currentUserId + '/Calendar');
+
+    onValue(userCalendarRef, (snapshot) => {
+        const CalendarData = snapshot.val();
+        if (CalendarData) {
+            const tableBody = document.querySelector('tbody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            CalendarData.forEach(item => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td><input type="text" value="${item.subject || ''}"></td>
+                    <td><input type="text" value="${item.details || ''}"></td>
+                    <td><input type="date" value="${item.dateDue || ''}"></td>
+                    <td><input type="checkbox" class="completeCheckbox" ${item.completed ? 'checked' : ''}></td>
+                `;
+                tableBody.appendChild(newRow);
+
+                const checkbox = newRow.querySelector('.completeCheckbox');
+                
+                // Apply the completed-row class if the task is marked as completed
+                if (item.completed) {
+                    newRow.classList.add('completed-row');
+                }
+
+                addCheckboxListeners(checkbox, newRow);
+            });
+        }
+    }, (error) => {
+        console.error("Error loading data:", error);
+    });
+}
+
+function showTooltip() {
+        alert("Click once to check off task, click twice to delete it.");
+    }
+
+</script>
+              
+  
+
+</body>
+</html>

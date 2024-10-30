@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="blueprintstyle.css">
+    <title>Study Tips</title>
+    <style>
+        /* Container for tips and videos */
+        #content-container {
+            display: flex;
+            max-width: 90%;
+            margin: 20px auto;
+            gap: 20px;
+        }
+
+        /* Study tips section - takes up 70% of the width */
+        #tips {
+            flex: 7;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* Videos section - takes up 30% of the width */
+        #videos {
+            flex: 2.5;
+            background-color: #8b9dc3;
+            padding: 20px;
+            margin-right: -30px;
+            margin-left: 10px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        /* Heading and text styles */
+        #tips h3, #videos h5 {
+            font-size: 1.2rem;
+        }
+
+        #videos h5 {
+            color: white;
+            font-size: 2rem;
+        }
+
+
+        /* Video styling */
+        #videos iframe {
+            width: 90%;
+            max-width: 100%;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            #content-container {
+                flex-direction: column;
+            }
+
+            #tips {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+    
+<body>
+    <header>Blueprint</header>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="Calendar.html">Tracker</a>
+        <a href="Planner.html">Planner</a>
+        <a href="ToDo.html">To Do</a>
+        <a href="StudyTips.html" class="active">Study Tips</a>
+        <a href="Signin.html">Login</a>
+    </div>
+<br>
+    <h2>Study Tips</h2><br>
+    
+    <div id="content-container">
+        <div id="tips">
+            <div class="left-column">
+                <h3>1. Set a Study Schedule:</h3>
+                <p>Allocate specific time slots for studying each subject. Consistency helps reinforce learning.</p>
+         
+                <h3>3. Active Learning Techniques:</h3>
+                <p>Engage with the material through summarizing, teaching it to someone else, or discussing concepts with peers.</p>
+            
+                <h3>5. Find a Good Study Environment:</h3>
+                <p>Choose a quiet, comfortable space with minimal distractions. Good lighting and a tidy desk can help focus.</p>
+            
+                <h3>7. Past Exams:</h3>
+                <p>Familiarize yourself with the exam format and types of questions by practicing past papers or sample tests.</p>
+            
+                <h3>9. Limit Multitasking:</h3>
+                <p>Focus on one task at a time to enhance concentration and productivity.</p>
+            
+                <h3>11. Stay Healthy:</h3>
+                <p>Maintain a balanced diet, exercise regularly, and ensure you’re getting enough sleep to improve focus and memory.</p>
+            
+                <h3>13. Incorporate Technology:</h3>
+                <p>Use educational apps and websites that offer quizzes, flashcards, and other interactive learning tools.</p>
+            
+                <h3>15. Stay Positive:</h3>
+                <p>Maintain a positive attitude towards studying and remember that persistence is key to improvement.</p>
+            </div>
+            
+            <div class="right-column">
+                
+            
+                <h3>2. Regular Breaks:</h3>
+                <p>Follow the Pomodoro Technique—study for 25 minutes, then take a 5-minute break to refresh your mind.</p>
+            
+                <h3>4. Use Study Aids:</h3>
+                <p>Incorporate flashcards, mind maps, and visual aids to help reinforce concepts and improve memory retention.</p>
+                
+                <h3>6. Set Clear Goals:</h3>
+                <p>Break down larger tasks into manageable goals. For example, aim to complete a chapter or specific problems in a set time.</p>
+                
+                <h3>8. Stay Organized:</h3>
+                <p>Keep track of assignments, deadlines, and exams with planners or digital apps to avoid last-minute cramming.</p>
+            
+                <h3>10. Ask for Help:</h3>
+                <p>Don’t hesitate to reach out to teachers, classmates, or tutors if you’re struggling with a topic.</p>
+            
+                <h3>12. Join Study Groups:</h3>
+                <p>Collaborating with peers can provide different perspectives and enhance understanding of complex topics.</p>
+                
+                <h3>14. Review Regularly:</h3>
+                <p>Set aside time each week to review what you've learned to reinforce memory and understanding.</p>
+    
+                
+            </div>
+            
+        </div>
+
+        <div id="videos">
+            <h5>Videos</h5>
+            <iframe src="https://www.youtube.com/embed/Shl9Og4TLXw?si=clasAXEAAeTxqXW7" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/m5cQ5bWLi2A?si=q5oKpI7gRaWvzymA" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/gyITyJgNyQ8?si=9oJicMAR5j2myMtR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TjPFZaMe2yw?si=D_3QR-KqmtTQVWRL" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Blueprint. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+    

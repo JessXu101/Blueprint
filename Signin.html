@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="blueprintstyle.css">
+    <title>Sign In / Sign Up</title>
+    <style>
+        
+        #authContainer {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 50px auto;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background-color: #f7f7f7;
+            color: #3b5998;
+            cursor: pointer;
+            font-size: 16px;
+
+        }
+
+        .tab button.active {
+            background-color: #dfe3ee;
+            color: #3b5998;
+        }
+
+        input[type="email"], input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #dfe3ee;
+            border-radius: 4px;
+            background-color: #f7f7f7;
+            color: #3b5998;
+            font-size: 16px;
+        }
+
+        
+.input-container {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.password-input {
+    width: 90%;
+    padding: 10px;
+    padding-right: 30px; /* Adjust padding to make space for the icon */
+    margin: 0;
+    border: 1px solid #dfe3ee;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    color: #3b5998;
+    font-size: 16px;
+    margin-bottom: 30px; /* Keeps the margin from previous code */
+}
+
+.caps-lock-icon {
+    position: absolute;
+    right: 20px;
+    top: 30%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #3b5998; /* You can change the color as per your preference */
+}
+
+
+
+button[id="authButton"], [id="authSubmitButton"], [id="nextButton"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: #3b5998;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5%;
+}
+
+button[id="authButton"]:hover,
+[id="authSubmitButton"]:hover,
+[id="nextButton"]:hover {
+    background-color: #8b9dc3;
+}
+
+        #secretContent {
+            display: none;
+    text-align: center; /* Center the buttons inside this container */
+    margin-top: 40px; /* Moves the buttons further down the page */
+}
+
+button[id="signOutButton"], [id="deleteAccountButton"] {
+    background-color: #3b5998;
+    color: #ffffff;
+    width: 200px; /* Set a fixed width for both buttons */
+    padding: 12px;
+    margin: 10px 15px; /* Add margin around buttons for spacing */
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* Allows the buttons to sit next to each other */
+    text-align: center; /* Ensure text inside buttons is centered */
+}
+
+button[id="signOutButton"]:hover, [id="deleteAccountButton"]:hover {
+    background-color: #8b9dc3; /* Change background color on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+footer {position: fixed;}
+
+    </style>
+</head>
+<body>
+    <div>
+        <header>
+            Blueprint
+        </header>
+    </div>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="Calendar.html">Tracker</a>
+        <a href="Planner.html">Planner</a>
+        <a href="ToDo.html">To Do</a>
+        <a href="StudyTips.html">Study Tips</a>
+        <a href="Signin.html" class="active">Login</a>
+    </div>
+
+    <div id="authContainer">
+        <div class="tab">
+            <button id="signInTab" class="active">Sign In</button>
+            <button id="signUpTab">Sign Up</button>
+        </div>
+    
+        <h4 id="authTitle">Sign In</h4>
+    
+        <!-- Email and Password Section -->
+        <div id="emailPasswordSection">
+            <input type="email" placeholder="Email" id="userEmail">
+            
+            <div class="input-container">
+                <input type="password" placeholder="Password" id="userPassword" class="password-input">
+                <span id="capsLockIcon" class="caps-lock-icon" style="display:none;">⬆</span> <!-- Caps lock arrow -->
+            </div>
+    
+            <label><input type="checkbox" id="togglePassword"> Show Password</label>
+            
+            <!-- 'Next' button for Sign Up, hidden on Sign In -->
+            <button id="nextButton" style="display: none;">Next</button> <!-- Hidden by default, only shown on Sign Up -->
+    
+            <!-- 'Enter' button for Sign In -->
+            <button id="authButton" style="display: block;">Enter</button> <!-- This will be used for Sign In or final Sign Up step -->
+        </div>
+    
+        <!-- Name Section (hidden by default) -->
+        <div id="nameSection" style="display: none;">
+            <input type="text" placeholder="Name" id="userName">
+            <button id="authSubmitButton">Enter</button> <!-- Separate button for finalizing Sign Up -->
+        </div>
+    </div>
+
+    <div id="secretContent" style="display:none;">
+        <h2>Welcome, <span id="userDisplayName"></span>!</h2><br>
+        <button id="signOutButton">Sign Out</button>
+        <button id="deleteAccountButton">Delete Account</button> <!-- New button -->
+    </div>
+   
+    <footer>
+        <p>&copy; 2024 Blueprint. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+        
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBLZs2ZrAiddMYetsWRYM4Z92zVo0hOiP8",
+            authDomain: "ace-43229.firebaseapp.com",
+            projectId: "ace-43229",
+            storageBucket: "ace-43229.appspot.com",
+            messagingSenderId: "607266423584",
+            appId: "1:607266423584:web:44eb1ae299097624b64d45",
+            measurementId: "G-B0PC6B0HZ0"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const userEmail = document.querySelector("#userEmail");
+        const userPassword = document.querySelector("#userPassword");
+        const userName = document.querySelector("#userName");
+        const nextButton = document.querySelector("#nextButton");
+        const authButton = document.querySelector("#authButton");
+        const authSubmitButton = document.querySelector("#authSubmitButton"); // New final submit button
+        const signInTab = document.querySelector("#signInTab");
+        const signUpTab = document.querySelector("#signUpTab");
+        const authTitle = document.querySelector("#authTitle");
+        const emailPasswordSection = document.querySelector("#emailPasswordSection");
+        const nameSection = document.querySelector("#nameSection");
+        const secretContent = document.querySelector("#secretContent");
+        const userEmailDisplay = document.querySelector("#userEmailDisplay");
+        const signOutButton = document.querySelector("#signOutButton");
+        const togglePassword = document.querySelector("#togglePassword");
+        const capsLockIcon = document.querySelector("#capsLockIcon");
+
+        let isSignUp = false;
+        let isNextStep = false;
+
+        // Switch to Sign In page
+        const switchToSignIn = () => {
+            isSignUp = false;
+            isNextStep = false;
+            authTitle.textContent = "Sign In";
+            signInTab.classList.add("active");
+            signUpTab.classList.remove("active");
+
+            // Show only email/password inputs and the 'Enter' button for Sign In
+            emailPasswordSection.style.display = 'block';
+            nameSection.style.display = 'none';
+            nextButton.style.display = 'none'; // Hide 'Next' button for Sign In
+            authButton.style.display = 'block'; // Show 'Enter' button for Sign In
+        };
+
+        // Switch to Sign Up page
+        const switchToSignUp = () => {
+            isSignUp = true;
+            isNextStep = false;
+            authTitle.textContent = "Sign Up";
+            signInTab.classList.remove("active");
+            signUpTab.classList.add("active");
+
+            // Show email/password inputs and 'Next' button for Sign Up
+            emailPasswordSection.style.display = 'block';
+            nameSection.style.display = 'none';
+            nextButton.style.display = 'block'; // Show 'Next' button for Sign Up
+            authButton.style.display = 'none'; // Hide 'Enter' button initially
+        };
+
+        // Handle 'Next' button click to show name input
+        const showNameInput = (e) => {
+            e.preventDefault();
+            isNextStep = true;
+
+            // Hide email/password and show the name input field for final Sign Up step
+            emailPasswordSection.style.display = 'none';
+            nameSection.style.display = 'block';
+            nextButton.style.display = 'none'; // Hide 'Next' button after moving to Name input
+        };
+
+        // Handle sign up and profile update with name
+        const userAuth = async () => {
+            const email = userEmail.value;
+            const password = userPassword.value;
+
+            if (!isSignUp) { // Sign In
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    alert("Signed in successfully!");
+                } catch (error) {
+                    console.error(error.code, error.message);
+                    alert("Sign In Error: " + error.message);
+                }
+            }
+        };
+
+        // Handle sign-up completion (final step with name)
+        const completeSignUp = async () => {
+            const email = userEmail.value;
+            const password = userPassword.value;
+            const name = userName.value;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                await updateProfile(user, { displayName: name });
+                alert("Account created and name saved!");
+            } catch (error) {
+                console.error(error.code, error.message);
+                alert("Sign Up Error: " + error.message);
+            }
+        };
+
+        // Event Listeners
+        signInTab.addEventListener("click", switchToSignIn);
+        signUpTab.addEventListener("click", switchToSignUp);
+        nextButton.addEventListener("click", showNameInput);
+        authButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            userAuth();
+        });
+        authSubmitButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            completeSignUp();
+        });
+
+        // Toggle password visibility
+        togglePassword.addEventListener('change', () => {
+            userPassword.type = userPassword.type === "password" ? "text" : "password";
+        });
+
+        // Function to check Caps Lock state and toggle the icon
+const checkCapsLock = (e) => {
+    if (e.getModifierState("CapsLock")) {
+        capsLockIcon.style.display = 'block'; // Show the arrow
+    } else {
+        capsLockIcon.style.display = 'none'; // Hide the arrow
+    }
+};
+
+// Listen for keydown and keyup events to detect Caps Lock
+userPassword.addEventListener('keydown', checkCapsLock);
+userPassword.addEventListener('keyup', checkCapsLock);
+
+// Also check for Caps Lock when the user clicks inside the password field
+userPassword.addEventListener('focus', checkCapsLock);
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // Display the user's name in the secret message
+        const displayName = user.displayName || "User"; // Default to "User" if no name set
+        document.querySelector("#secretContent h2 span").textContent = displayName;
+
+        // Hide auth container and show secret content
+        document.querySelector("#authContainer").style.display = "none";
+        secretContent.style.display = "block";
+    }
+});
+
+
+        // Handle sign-out
+        signOutButton.addEventListener("click", async () => {
+            await signOut(auth);
+            alert("Signed out successfully!");
+            document.querySelector("#authContainer").style.display = "block";
+            secretContent.style.display = "none";
+        });
+
+        import { deleteUser } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+// Reference to the "Delete Account" button
+const deleteAccountButton = document.querySelector("#deleteAccountButton");
+
+// Handle account deletion
+deleteAccountButton.addEventListener("click", async () => {
+    const user = auth.currentUser;
+
+    if (user) {
+        const confirmation = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+        if (confirmation) {
+            try {
+                await deleteUser(user);
+                alert("Account deleted successfully!");
+
+                // Sign the user out and show the sign-in form
+                document.querySelector("#authContainer").style.display = "block";
+                secretContent.style.display = "none";
+            } catch (error) {
+                console.error("Error deleting account:", error);
+                if (error.code === "auth/requires-recent-login") {
+                    alert("To delete your account, please sign in again.");
+                } else {
+                    alert("An error occurred while deleting the account: " + error.message);
+                }
+            }
+        }
+    } else {
+        alert("No user is signed in.");
+    }
+});
+
+    </script>
+</body>
+</html>

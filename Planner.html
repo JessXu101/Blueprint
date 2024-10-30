@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="blueprintstyle.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Special+Elite&display=swap" rel="stylesheet">
+    <title>Study Planner</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .table-container {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #dfe3ee;
+        }
+
+        th {
+            background-color: #3b5998;
+            color: white;
+            position: relative;
+            font-family: special elite;
+        }
+
+        .date {
+            display: block;
+            font-size: 0.8rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        td input {
+            width: 100%;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+
+        .week-navigation {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-bottom: 5px;
+        }
+
+        .week-navigation button {
+            padding: 5px;
+            font-size: 24px;
+            margin: 0 10px;
+            background-color: transparent;
+            color: #3b5998;
+            border: none;
+            cursor: pointer;
+        }
+
+        .week-controls {
+            display: flex;
+            gap: 5px;
+            justify-content: flex-end;
+            margin-bottom: 5px;
+        }
+
+        #week-picker {
+            font-size: 1.2rem;
+            padding: 4px;
+            border: 2px solid #3b5998;
+            border-radius: 5px;
+            background-color: #f7f7f7;
+            color: #333;
+            outline: none;
+            text-align: center;
+            width: 150px;
+            cursor: pointer;
+        }
+
+        #week-picker:hover {
+            border-color: #8b9dc3;
+        }
+
+        #week-picker:focus {
+            border-color: #3b5998;
+            box-shadow: 0 0 5px rgba(59, 89, 152, 0.5);
+        }
+
+        .date {
+            display: block;
+            font-size: 0.8rem;
+            color: #ffffff;
+            margin-top: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>Blueprint</header>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="Calendar.html">Tracker</a>
+        <a href="Planner.html" class="active">Planner</a>
+        <a href="ToDo.html">To Do</a>
+        <a href="StudyTips.html">Study Tips</a>
+        <a href="Signin.html">Login</a>
+    </div>
+    
+    <br>
+    <h2>Study Session Planner</h2>
+    <br>
+
+    <div class="week-navigation">
+        <div class="week-controls">
+            <button id="prev-week">◀</button>
+            <input type="date" id="week-picker">
+            <button id="next-week">▶</button>
+        </div>
+
+    </div>
+    <div id="save-warning" style="color: red; display: none;">
+        Please sign in to save your work.
+    </div>
+    
+    
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Mon<span class="date" id="mon-date"></span></th>
+                        <th>Tue<span class="date" id="tue-date"></span></th>
+                        <th>Wed<span class="date" id="wed-date"></span></th>
+                        <th>Thu<span class="date" id="thu-date"></span></th>
+                        <th>Fri<span class="date" id="fri-date"></span></th>
+                        <th>Sat<span class="date" id="sat-date"></span></th>
+                        <th>Sun<span class="date" id="sun-date"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <tr>
+                            <td>09:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>10:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>11:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>12:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>13:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>14:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>15:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>16:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>17:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>18:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>19:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>20:00</td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    
+       const firebaseConfig = {
+            apiKey: "AIzaSyBLZs2ZrAiddMYetsWRYM4Z92zVo0hOiP8",
+            authDomain: "ace-43229.firebaseapp.com",
+            databaseURL: "https://ace-43229-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ace-43229",
+            storageBucket: "ace-43229.appspot.com",
+            messagingSenderId: "607266423584",
+            appId: "1:607266423584:web:44eb1ae299097624b64d45",
+            measurementId: "G-B0PC6B0HZ0"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+    
+        let currentUserId;
+    let currentWeekStartDate = new Date(); // Start with the current date as default
+
+    // Helper function: Get the Monday date for a given date
+    function getWeekDates(startDate) {
+        const start = new Date(startDate);
+        const day = start.getDay() || 7; // Adjust for Sunday being day 0
+        if (day !== 1) {
+            start.setHours(-24 * (day - 1)); // Set to the previous Monday
+        }
+
+        const dates = [];
+        for (let i = 0; i < 7; i++) {
+            const tempDate = new Date(start);
+            tempDate.setDate(start.getDate() + i);
+            dates.push(tempDate);
+        }
+        return dates;
+    }
+
+    // Generate a unique key based on the Monday of the week
+    function getWeekKey(startDate) {
+        const monday = getWeekDates(startDate)[1]; // Always get Monday
+        return monday.toISOString().split('T')[0]; // Return as ISO string
+    }
+
+    // Function to update the displayed week dates
+    function updateWeekDates(dates) {
+        document.getElementById('mon-date').textContent = dates[0].toLocaleDateString();
+        document.getElementById('tue-date').textContent = dates[1].toLocaleDateString();
+        document.getElementById('wed-date').textContent = dates[2].toLocaleDateString();
+        document.getElementById('thu-date').textContent = dates[3].toLocaleDateString();
+        document.getElementById('fri-date').textContent = dates[4].toLocaleDateString();
+        document.getElementById('sat-date').textContent = dates[5].toLocaleDateString();
+        document.getElementById('sun-date').textContent = dates[6].toLocaleDateString();
+    }
+
+    // Load planner data for a specific week from Firebase
+    function loadPlannerData(weekKey) {
+        if (currentUserId) {
+            const weekRef = ref(database, `/Users/${currentUserId}/Planner/${weekKey}`);
+            get(weekRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    document.querySelectorAll('td input').forEach((input, index) => {
+                        input.value = data[index] || ""; // Populate with data or empty if none
+                    });
+                } else {
+                    clearPlannerData(); // Clear the inputs if no data exists for that week
+                }
+            }).catch((error) => {
+                console.error("Error loading data:", error);
+            });
+        }
+    }
+
+    // Save planner data for a specific week to Firebase
+    function savePlannerData(weekKey) {
+        const inputs = Array.from(document.querySelectorAll('td input')).map(input => input.value);
+        if (currentUserId) {
+            const weekRef = ref(database, `/Users/${currentUserId}/Planner/${weekKey}`);
+            set(weekRef, inputs).catch((error) => {
+                console.error("Error saving data:", error);
+            });
+        }
+    }
+
+    // Clear planner inputs
+    function clearPlannerData() {
+        document.querySelectorAll('td input').forEach(input => {
+            input.value = ''; // Clear all inputs
+        });
+    }
+
+    // Helper function to format the date as 'YYYY-MM-DD' for the input[type=date]
+function formatDateForInput(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+// Function to update the week picker to display the Monday of the current week
+function updateWeekPicker(monday) {
+    const weekPicker = document.getElementById('week-picker');
+    weekPicker.value = formatDateForInput(monday); // Set the input value to Monday's date
+}
+
+// Initialize the week planner
+function initializePlanner() {
+    const dates = getWeekDates(currentWeekStartDate); // Get week dates, starting with Monday
+    updateWeekDates(dates); // Update displayed week
+    updateWeekPicker(dates[0]); // Set the week picker to Monday's date
+
+    const weekKey = getWeekKey(currentWeekStartDate);
+    loadPlannerData(weekKey);
+
+    // Attach save event for each input (re-attach to avoid multiple listeners)
+    document.querySelectorAll('td input').forEach(input => {
+        input.removeEventListener('input', handleInput); // Remove any previous listener
+        input.addEventListener('input', handleInput);
+    });
+}
+
+    // Navigation controls (previous/next week)
+    document.getElementById('prev-week').addEventListener('click', () => {
+        currentWeekStartDate.setDate(currentWeekStartDate.getDate() - 7); // Go back one week
+        initializePlanner(); // Reinitialize for the previous week
+    });
+
+    document.getElementById('next-week').addEventListener('click', () => {
+        currentWeekStartDate.setDate(currentWeekStartDate.getDate() + 7); // Go forward one week
+        initializePlanner(); // Reinitialize for the next week
+    });
+
+    // Week picker (change week manually)
+    document.getElementById('week-picker').addEventListener('change', (event) => {
+        const selectedDate = new Date(event.target.value);
+        currentWeekStartDate = selectedDate;
+        initializePlanner();
+    });
+
+    // Handle Firebase Authentication (trigger planner initialization when user logs in)
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            currentUserId = user.uid;
+            initializePlanner(); // Initialize planner for logged-in user
+        } else {
+            console.log("User not logged in");
+            alert("Please sign in to save your work.");
+        }
+    });
+    </script>
+    
+
+<footer>
+    <p>&copy; 2024 Blueprint. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+</script>
+</body>
+</html>
