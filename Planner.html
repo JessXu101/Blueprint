@@ -368,7 +368,11 @@
             });
         }
     }
-
+// Define handleInput to save planner data when input changes
+function handleInput() {
+    const weekKey = getWeekKey(currentWeekStartDate); // Get the key for the current week
+    savePlannerData(weekKey); // Save data for the current week
+}
     // Clear planner inputs
     function clearPlannerData() {
         document.querySelectorAll('td input').forEach(input => {
