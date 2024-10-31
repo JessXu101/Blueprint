@@ -305,16 +305,18 @@ footer {position: fixed;}
 
         // Update profile with the display name
         await updateProfile(user, { displayName: name });
-        
-        // Force a refresh to ensure display name is updated
-        await user.reload();
 
-        // Directly update the display name in the UI after profile update
-        document.querySelector("#secretContent h2 span").textContent = user.displayName || "User";
-        document.querySelector("#authContainer").style.display = "none";
-        secretContent.style.display = "block";
+        // Add a short delay to ensure Firebase applies the display name update
+        setTimeout(async () => {
+            await user.reload();  // Force reload of user data
+            document.querySelector("#secretContent h2 span").textContent = user.displayName || "User";
+            
+            // Hide the auth container and display the welcome content
+            document.querySelector("#authContainer").style.display = "none";
+            secretContent.style.display = "block";
+        }, 500); // Delay of 500 milliseconds (adjust if needed)
 
-        alert("Account created and name saved!");
+        alert("Account created!");
     } catch (error) {
         console.error(error.code, error.message);
         alert("Sign Up Error: " + error.message);
