@@ -238,7 +238,7 @@ document.querySelectorAll('tbody tr').forEach((row) => {
               });
 
               function showTooltip() {
-        alert("Click checkbox once to complete a task, click twice to delete it.");
+        alert("Click once to check off task, click twice to delete it.");
     }
             </script>
               <script type="module">
@@ -265,17 +265,19 @@ document.querySelectorAll('tbody tr').forEach((row) => {
                 
                 let currentUserId = null;
                 
-                // Handle Firebase Authentication
-                onAuthStateChanged(auth, user => {
-                    if (user) {
-                        currentUserId = user.uid;
-                        loadCalendarData();
-                    } else {
-                        currentUserId = null;
-                        clearCalendarData();
-                        alert("Please sign in to save your work.");
-                    }
-                });
+window.onload = function() {
+    onAuthStateChanged(auth, user => {
+        if (user) {
+            currentUserId = user.uid;
+            loadCalendarData();
+        } else {
+            currentUserId = null;
+            clearCalendarData();
+            alert("Please sign in to save your work.");
+        }
+    });
+};
+
                 
                 // Debounce function to delay saving data
                 function debounce(func, delay) {
@@ -373,6 +375,18 @@ function loadCalendarData() {
     }, (error) => {
         console.error("Error loading data:", error);
     });
+}
+
+function clearCalendarData() {
+    const tableBody = document.querySelector('tbody');
+    if (tableBody) {
+        tableBody.querySelectorAll('input[type="text"], input[type="date"]').forEach(input => {
+            input.value = ''; // Clear input fields
+        });
+        tableBody.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false; // Uncheck all checkboxes
+        });
+    }
 }
 
 
