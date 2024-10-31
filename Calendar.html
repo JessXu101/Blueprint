@@ -120,6 +120,7 @@
     color: #f7f7f7;
 }
 
+
             
         </style>
         </head>
@@ -148,10 +149,9 @@
                         <th>Subject</th>
                         <th>Details</th>
                         <th>Date Due</th>
-                        <th>Complete</th>
-                         <i class="fa-solid.fa-lightbulb" onclick="showTooltip()"></i>
-                         
-              
+                        <th>Complete  <i class="fa-solid fa-lightbulb" onclick="showTooltip()"></i>
+                        </th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -236,6 +236,10 @@ document.querySelectorAll('tbody tr').forEach((row) => {
               
                   attachInputListeners(); // Re-attach input listeners to new inputs
               });
+
+              function showTooltip() {
+        alert("Click once to check off task, click twice to delete it.");
+    }
             </script>
               <script type="module">
                 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
@@ -371,9 +375,7 @@ function loadCalendarData() {
     });
 }
 
-function showTooltip() {
-        alert("Click once to check off task, click twice to delete it.");
-    }
+
 
 </script>
               
