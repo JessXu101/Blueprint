@@ -294,23 +294,34 @@ footer {position: fixed;}
             }
         };
 
-        // Handle sign-up completion (final step with name)
         const completeSignUp = async () => {
-            const email = userEmail.value;
-            const password = userPassword.value;
-            const name = userName.value;
+    const email = userEmail.value;
+    const password = userPassword.value;
+    const name = userName.value;
 
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
-                await updateProfile(user, { displayName: name });
+        // Update profile with the display name
+        await updateProfile(user, { displayName: name });
         
-            } catch (error) {
-                console.error(error.code, error.message);
-                alert("Sign Up Error: " + error.message);
-            }
-        };
+        // Force a refresh to ensure display name is updated
+        await user.reload();
+
+        // Directly update the display name in the UI after profile update
+        document.querySelector("#secretContent h2 span").textContent = user.displayName || "User";
+        document.querySelector("#authContainer").style.display = "none";
+        secretContent.style.display = "block";
+
+        
+    } catch (error) {
+        console.error(error.code, error.message);
+        alert("Sign Up Error: " + error.message);
+    }
+};
+
+
 
         // Event Listeners
         signInTab.addEventListener("click", switchToSignIn);
