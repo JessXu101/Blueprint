@@ -305,7 +305,7 @@ footer {position: fixed;}
                 const user = userCredential.user;
 
                 await updateProfile(user, { displayName: name });
-                alert("Account created and name saved!");
+        
             } catch (error) {
                 console.error(error.code, error.message);
                 alert("Sign Up Error: " + error.message);
